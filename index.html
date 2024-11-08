@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY TEACHERS DAY!!!</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #00ced5, #4f9dcd);
+            text-align: center;
+            color: #333;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(background2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            background-color: rgba(142, 211, 229, 0.826);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            justify-content: top;
+
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #00ced5;
+            margin-bottom: 25px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .teacher-button {
+            padding: 12px 30px;
+            margin: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            background-color: #00ced5;
+            color: rgb(255, 255, 255);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .teacher-button:over {
+            background-color:none;
+            transform: scale(1.1);
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #00ced5;
+            font-weight: bold;
+            border: 2px dashed #00ced5;
+            padding: 30px;
+            border-radius: 12px;
+            background-color: #bcf5e9;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            margin: 20px 0;
+            width: calc(100% - 42px);
+            border: 2px solid #00ced5;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0004eb;
+        }
+
+        #sendCustom {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background-color: #00ced5;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #sendCustom:hover {
+            background-color: #00b7c1;
+            transform: scale(1.1);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #00ced5;
+            opacity: 0;
+            animation: confetti 1s forwards;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HAPPY TEACHERS DAY!!!</h1>
+        <div id="buttons">
+            <button class="teacher-button" data-teacher="Sir Bryan">Sir Bryan</button>
+            <img src="img1.jpg" alt="A description of the image width="300" height="150"">
+            <button class="teacher-button" data-teacher="Sir Marvin">Sir Marvin</button>
+            <img src="img2.jpg" alt="A description of the image width="300" height="150"">
+            <button class="teacher-button" data-teacher="Sir Pacia">Sir Pacia</button>
+            <img src="img3.jpg" alt="A description of the image width="300" height="150"">
+            <button class="teacher-button" data-teacher="Ma'am Jessa">Ma'am Jessa</button>
+            <img src="img2.jpg" alt="A description of the image width="300" height="150"">
+        </div>
+        <div id="message" class="message"></div>
+        <input type="text" id="customMessage" placeholder="Type your custom message...">
+        <button id="sendCustom">Send to a Random Teacher</button>
+    </div>
+
+    <script>
+        // Function to create the confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 1000);
+            }
+        }
+
+        // Event listener for teacher buttons
+        document.querySelectorAll('.teacher-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const teacher = button.dataset.teacher;
+                document.getElementById('message').innerText = `Thank you so much, ${teacher} for always inspiring us! 🎉`;
+
+                createConfetti();
+            });
+        });
+
+        // Event listener for sending custom message
+        document.getElementById('sendCustom').addEventListener('click', () => {
+            const customMessage = document.getElementById('customMessage').value;
+            const teachers = ['Sir Bryan', 'Sir Marvin', 'Sir Pacia', 'Ma\'am Jessa'];
+            const randomTeacher = teachers[Math.floor(Math.random() * teachers.length)];
+            document.getElementById('message').innerText = `Sending to ${randomTeacher}: "${customMessage}"`;
+
+            createConfetti();
+        });
+    </script>
+</body>
+</html>
